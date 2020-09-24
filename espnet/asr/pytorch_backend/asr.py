@@ -504,12 +504,30 @@ def train(args):
         )
     elif args.opt == "adam":
         optimizer = torch.optim.Adam(model_params, weight_decay=args.weight_decay)
+    elif args.opt == "radam":
+        import torch_optimizer
+        optimizer = torch_optimizer.RAdam(
+            model_params,
+            lr=1e-3,
+            betas=(0.9, 0.999),
+            eps=args.eps,
+            weight_decay=args.weight_decay,
+        )
+        )
+    elif args.opt == "ranger":
+        from ranger.ranger2020 import Ranger
+        optimizer = Ranger(model_params, lr=1e-3,                       # lr
+                 alpha=0.5, k=6, N_sma_threshhold=5,           # Ranger options
+                 betas=(.95, 0.999), eps=args.eps, weight_decay=args.weight_decay,  # Adam options
+                 # Gradient centralization on or off, applied to conv layers only or conv + fc layers
+                 use_gc=True, gc_conv_only=False, gc_loc=True)
     elif args.opt == "noam":
         from espnet.nets.pytorch_backend.transformer.optimizer import get_std_opt
 
         optimizer = get_std_opt(
             model_params, args.adim, args.transformer_warmup_steps, args.transformer_lr
         )
+    elif 
     else:
         raise NotImplementedError("unknown optimizer: " + args.opt)
 
