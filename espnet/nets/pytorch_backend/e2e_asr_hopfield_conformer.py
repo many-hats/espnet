@@ -92,7 +92,7 @@ class E2E(E2ETransformer):
             positional_dropout_rate=args.dropout_rate,
             attention_dropout_rate=args.transformer_attn_dropout_rate,
             pos_enc_layer_type=args.transformer_encoder_pos_enc_layer_type,
-            selfattention_layer_type=args.transformer_encoder_selfattn_layer_type,
+            selfattention_layer_type="hopfield",
             activation_type=args.transformer_encoder_activation_type,
             macaron_style=args.macaron_style,
             use_cnn_module=args.use_cnn_module,
