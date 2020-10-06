@@ -10,7 +10,7 @@ dunits: 2048
 adim: 256
 aheads: 4
 # transformer related
-model-module: "espnet.nets.pytorch_backend.e2e_asr_transformer:E2E"
+model-module: "espnet.nets.pytorch_backend.e2e_asr_hopfield_transformer:E2E"
 
 # hybrid CTC/attention
 mtlalpha: 0.3
