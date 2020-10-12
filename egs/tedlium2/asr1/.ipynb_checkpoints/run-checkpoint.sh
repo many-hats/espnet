@@ -21,7 +21,7 @@ resume=        # Resume the training from snapshot
 do_delta=false
 
 preprocess_config=conf/specaug.yaml
-train_config=conf/train.yaml
+train_config=conf/train_hopfield.yaml
 lm_config=conf/lm.yaml
 decode_config=conf/decode.yaml
 
